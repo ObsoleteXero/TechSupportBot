@@ -1061,6 +1061,16 @@ class DuckHunt(base.LoopCog):
 
         ctx.task_paginate(pages=embeds)
 
+    @util.with_typing
+    @commands.guild_only()
+    @duck.command(
+        brief="Summons a duck instantly",
+        description="Instantly summons a duck without changing the running duck loop. Duck will be summoned in the channel the command is run in",
+    )
+    async def spawn(self, ctx):
+        ADMIN_ONLY = True
+        self.execute(self, self.config, ctx.guild, ctx.channel)
+
     def get_user_text(self, duck_user):
         user = self.bot.get_user(int(duck_user.author_id))
         if user:
