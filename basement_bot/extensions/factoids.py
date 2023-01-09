@@ -56,6 +56,13 @@ def setup(bot):
     #dealing with the config.yml file located in ../
     config = bot.ExtensionConfig()
     config.add(
+        key="factoid_prefix",
+        datatype="str",
+        title="Factoid Prefix",
+        description="The prefix to call factoids",
+        default="?",
+    )
+    config.add(
         key="manage_roles",
         datatype="list",
         title="Manage factoids roles",
@@ -241,8 +248,8 @@ class FactoidManager(base.MatchCog):
 
         await factoid.delete()
 
-    async def match(self, _, __, content):
-        return content.startswith("?")
+    async def match(self, config, _ctx, content):
+        return content.startswith(config.factoids.factoid_prefix)
 
     async def response(self, config, ctx, content, _):
         if not ctx.guild:
