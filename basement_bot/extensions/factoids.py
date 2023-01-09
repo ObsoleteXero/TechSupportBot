@@ -249,8 +249,8 @@ class FactoidManager(base.MatchCog):
         await factoid.delete()
 
     async def match(self, config, _ctx, content):
-        self.bot.logger.info(f"Factoid prefix is {config.factoids.factoid_prefix}")
-        return content.startswith(config.factoids.factoid_prefix)
+        await self.bot.logger.info(f"Factoid prefix is {config.factoids.factoid_prefix.value}")
+        return content.startswith(config.factoids.factoid_prefix.value)
 
     async def response(self, config, ctx, content, _):
         if not ctx.guild:
