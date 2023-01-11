@@ -163,7 +163,7 @@ class Who(base.BaseCog):
 
         note_output_data = []
         for note in notes:
-            author = ctx.guild.get_member(int(note.author_id)) or "<Not found>"
+            author = ctx.guild.get_member(int(note.author_id)) or note.author_id
             data = {
                 "body": note.body,
                 "from": str(author),
