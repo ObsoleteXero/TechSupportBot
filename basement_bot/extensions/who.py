@@ -66,7 +66,7 @@ class Who(base.BaseCog):
         embed.color = discord.Color.dark_blue()
 
         for note in user_notes:
-            author = ctx.guild.get_member(int(note.author_id)) or "<Not found>"
+            author = ctx.guild.get_member(int(note.author_id)) or note.author_id
             embed.add_field(
                 name=f"Note from {author} ({note.updated.date()})",
                 value=f"*{note.body}*" or "*None*",
